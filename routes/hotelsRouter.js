@@ -6,14 +6,13 @@ const axios = require('axios')
 
 
 router.use(bodyParser.json())
-router.use(bodyParser.json())
 
 function handleValidationErrors(req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        const extractedErrors = []
-        errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
-        return res.status(422).json({ errors: extractedErrors })
+      //  const extractedErrors = []
+      //  errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
+        return res.status(422).json({ errors: errors.array() })
     }
     next()
   };
@@ -23,10 +22,10 @@ const validation = oneOf([
         query('latlong').exists().withMessage('Latitude and Longitude are required')
         .isLatLong().withMessage('This is not a valid latitude longitude value')
     ],
-    query('address').exists().withMessage('Address are required')
-    .isString().withMessage('Address must be String')
-    .isAlphanumeric().withMessage('This is not a valid value for Address')
-    .notEmpty().withMessage('Address cannot be empty')
+        query('address').exists().withMessage('Address are required')
+            .isString().withMessage('Address must be String')
+           // .isAlphanumeric().withMessage('This is not a valid value for Address')
+            .notEmpty().withMessage('Address cannot be empty')
     ])
 
 
@@ -47,10 +46,10 @@ router.route('/')
         axios.get(`${process.env.HERE_API_URL_BASE}` + 
         latlong + `${process.env.HERE_API_URL_ENDPOINT}`)
             .then(resp => {
-                res.json(resp.data);
+                res.json(resp.data.results.items);
             })
             .catch(err => {
-
+                res.json(err)
             })
                     
 
