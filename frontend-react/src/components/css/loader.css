@@ -1,0 +1,42 @@
+.loaderContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-height: 24em;
+    justify-content: center;
+}
+.loader {
+
+    max-width: 50%;
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 10px;
+    margin: auto;
+  }
+  .loader div {
+    position: absolute;
+    border: 4px solid #51B1E3;
+    opacity: 1;
+    border-radius: 50%;
+    animation: loader 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  .loader div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  @keyframes loader {
+    0% {
+      top: 18px;
+      left: 18px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 36px;
+      height: 36px;
+      opacity: 0;
+    }
+  }

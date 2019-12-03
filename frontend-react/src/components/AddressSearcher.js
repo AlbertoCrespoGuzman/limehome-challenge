@@ -5,6 +5,7 @@ import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng,
   } from 'react-places-autocomplete'
+import './css/autocomplete.css'
 
 class AddressSearcher extends Component {
     constructor(props){
@@ -67,16 +68,21 @@ class AddressSearcher extends Component {
         return (
             <div>
                 <PlacesAutocomplete
-        value={this.state.address}
-        onChange={this.handleChange}
-        onSelect={this.handleSelect}
-      >
+                value={this.state.address}
+                onChange={this.handleChange}
+                onSelect={this.handleSelect}
+                loader={<div className="loader">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        }
+              >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
+          <div className="autocomplete-container">
             <input
               {...getInputProps({
                 placeholder: 'Search Places ...',
-                className: 'location-search-input',
+                className: 'autocomplete-input',
               })}
             />
             <div className="autocomplete-dropdown-container">

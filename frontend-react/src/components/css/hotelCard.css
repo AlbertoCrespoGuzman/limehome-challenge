@@ -1,0 +1,33 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.7s;
+    width: 100%;
+    display: flex;
+    flex-direction: horizontal;
+    max-height:135px;
+    border: 1px solid #ffffff;
+  }
+  .card:hover {
+      background:#f3f9fd;
+      cursor: pointer;
+      border: 1px solid #51B1E3;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .cardContainer {
+    padding: 2px 16px;
+  }
+  .hotelOpeningHours{
+      font-size: 12px;
+      bottom: 0px;
+      position: relative;
+      margin-bottom: 0px;
+  }
+  .hotelOpened{
+    color: green;
+    margin-right:5px;
+  }
+  .hotelClosed {
+      color: red;
+      margin-right:5px;
+  }

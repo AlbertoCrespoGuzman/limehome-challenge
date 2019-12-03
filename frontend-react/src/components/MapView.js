@@ -15,13 +15,6 @@ class MapView extends Component {
         this.markerRender = this.markerRender.bind(this)
         this.handleZoom = this.handleZoom.bind(this)
     }
-    componentDidMount(){
-        console.log('component did mount')
-    }
-    componentDidUpdate(){
-        console.log('this.props.getLatlong',this.props.getLatlong)
-    }
-    
     getLatLongAsLeaflet = (latlong) =>{
         if(latlong){
             if(typeof latlong === 'string'){
@@ -45,14 +38,6 @@ class MapView extends Component {
         this.props.setLatlong(e.target.getCenter()['lat'] + ',' + e.target.getCenter()['lng'])
         this.props.loadData(e.target.getCenter()['lat'] + ',' + e.target.getCenter()['lng'])
     }
-    handleClick = () => {
-        const map = this.mapRef.current
-        if (map != null) {
-          map.leafletElement.locate()
-          console.log('handleClick-> map.leafletElement.locate()', map.leafletElement.locate())
-        }
-      }
-    
       handleZoom(e){
           this.setState({
             mapZoom: e.target.getZoom()
@@ -61,19 +46,31 @@ class MapView extends Component {
       markerRender(hotel){
           
         var icon = L.icon({
-            iconUrl: this.props.getMarkerEffect === hotel.id ? 'img/hotel-picture-1.png' : hotel.icon,
-            iconSize: [38, 38],
+            iconUrl: this.props.getMarkerEffect === hotel.id ? 'img/markerEffect.png' : hotel.icon,
+            iconSize: [36, 38],
             iconAnchor: [22, 34],
             popupAnchor: [-6, -32],
             shadowSize: [68, 95],
             shadowAnchor: [22, 94]
         });
-        return (<Marker icon={icon} key={hotel.id} position={this.getLatLongAsLeaflet(hotel.position)}>
+        return (<Marker icon={icon} zIndexOffset={this.props.getMarkerEffect === hotel.id ? 999999 : 100} riseOnHover={true} key={hotel.id} position={this.getLatLongAsLeaflet(hotel.position)}>
                 <Popup>
                     <h3>{hotel.title}</h3>
                     <p>{hotel.vicinity}</p>
                 </Popup>
             </Marker>
+        )
+      }
+      renderCenterMarker() {
+        var icon = L.icon({
+            iconUrl: 'img/markerCenter.png',
+            iconSize: [18, 38],
+            iconAnchor: [22, 34],
+            popupAnchor: [-6, -32],
+            shadowSize: [68, 95],
+            shadowAnchor: [22, 94]
+        });
+        return (<Marker icon={icon} riseOnHover={true} position={this.getLatLongAsLeaflet(this.props.getLatlong)} />
         )
       }
     render(){
@@ -95,10 +92,11 @@ class MapView extends Component {
                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    
                     {!this.props.isFetching && this.props.data
                         && this.props.data.map(this.markerRender)
                     }
+                    {this.renderCenterMarker()}
+                    
                 </Map>)}
             </div>
                 

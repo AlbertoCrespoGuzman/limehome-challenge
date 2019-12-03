@@ -1,0 +1,18 @@
+.autocomplete-container {
+    display:flex;
+    flex-direction: column;
+    padding:20px;
+    border-color: #51B1E3;
+    border-width: 3px;
+}
+.autocomplete-input {
+    padding:10px;
+    font-size:18px;
+    flex:1;
+}
+.autocomplete-dropdown-container{ 
+    flex:1;
+    border: 1px black;
+    z-index:999;
+    font-size:18px;
+}
