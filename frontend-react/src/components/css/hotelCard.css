@@ -22,8 +22,6 @@
     display: flex;
     flex: 3;
     flex-direction: column;
-    justify-content: stretch;
-    align-content: stretch;
     align-items: stretch;
   }
   .hotelOpeningHours{
@@ -31,7 +29,7 @@
       bottom: 0px;
       position: relative;
       margin-bottom: 0px;
-      flex:1;
+      vertical-align: text-bottom;
   }
   .hotelOpened{
     color: green;

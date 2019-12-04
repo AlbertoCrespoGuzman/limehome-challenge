@@ -20,7 +20,7 @@ class HotelCard extends Component {
                 <img src={this.getRandomPicture()} style={{flex:1}} />
                 <div className="cardContainer" >
                     <b style={{flex:1}}>{this.props.hotel.title}</b>
-                    <span style={{fontSize:12, flex:1}}>Distance: {this.props.hotel.distance}m</span> 
+                    <div style={{fontSize:12, flex:1}}>Distance: {this.props.hotel.distance}m</div> 
                     {this.props.hotel.openingHours && 
                     (
                         <div className="hotelOpeningHours">
