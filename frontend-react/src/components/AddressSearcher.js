@@ -66,7 +66,8 @@ class AddressSearcher extends Component {
       };
     render(){
         return (
-            <div>
+            <div className="container">
+                <h1 className="title">HOTELS</h1>
                 <PlacesAutocomplete
                 value={this.state.address}
                 onChange={this.handleChange}
@@ -91,15 +92,12 @@ class AddressSearcher extends Component {
                 const className = suggestion.active
                   ? 'suggestion-item--active'
                   : 'suggestion-item';
-                // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
+
                 return (
                   <div
                     {...getSuggestionItemProps(suggestion, {
                       className,
-                      style,
+                      
                     })}
                   >
                     <span>{suggestion.description}</span>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import './css/container.css'
+import HotelCard from './HotelCard'
 
 class MapView extends Component {
     constructor(props){
@@ -53,10 +54,16 @@ class MapView extends Component {
             shadowSize: [68, 95],
             shadowAnchor: [22, 94]
         });
-        return (<Marker icon={icon} zIndexOffset={this.props.getMarkerEffect === hotel.id ? 999999 : 100} riseOnHover={true} key={hotel.id} position={this.getLatLongAsLeaflet(hotel.position)}>
+        return (<Marker icon={icon} zIndexOffset={this.props.getMarkerEffect === hotel.id ? 999999 : 100} 
+                    riseOnHover={true} key={hotel.id} position={this.getLatLongAsLeaflet(hotel.position)}
+                    onMouseOver={(e) => {
+                        e.target.openPopup();
+                      }}
+                      onMouseOut={(e) => {
+                        e.target.closePopup();
+                      }}>
                 <Popup>
-                    <h3>{hotel.title}</h3>
-                    <p>{hotel.vicinity}</p>
+                    <HotelCard hotel={hotel} />
                 </Popup>
             </Marker>
         )

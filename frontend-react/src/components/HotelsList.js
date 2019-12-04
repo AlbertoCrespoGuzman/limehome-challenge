@@ -3,8 +3,7 @@ import { loadDataRequest } from '../actions'
 import { connect } from 'react-redux'
 import './css/container.css'
 import './css/loader.css'
-import './css/hotelCard.css'
-
+import HotelCard from './HotelCard'
 
 class HotelsList extends Component {
     constructor(props){
@@ -14,28 +13,13 @@ class HotelsList extends Component {
         this.setMarkerEffect = this.setMarkerEffect.bind(this)
     }
     renderHotelCard(hotel){
-        console.log('renderHotelCard')
         return (
             <li key={hotel.id} 
                 value={hotel.id}
                 onMouseOver={() => this.setMarkerEffect(hotel.id)}
                 onMouseLeave={() => this.setMarkerEffect('')}>
-            <div className='card'
                 
-            >
-                <img src='img/hotel-picture-1.png' style={{width:'25%', margin:10}} />
-                <div className="cardContainer" >
-                    <p><b>{hotel.title}</b></p><span style={{fontSize:12}}>Distance: {hotel.distance}m</span> 
-                    {hotel.openingHours && 
-                    (
-                        <div className="hotelOpeningHours">
-                            <span className={hotel.openingHours.isOpen ? 'hotelOpened' : 'hotelClosed'}>{hotel.openingHours.isOpen ? 'Opened now' : 'Closed now'}</span>
-                            <span>{hotel.openingHours.label} {hotel.openingHours.text}</span> 
-                        </div>
-                    )}
-                    
-                </div>
-            </div>    
+                <HotelCard hotel={hotel} />
                 
             </li>
         )
