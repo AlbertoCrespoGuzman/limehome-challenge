@@ -39,7 +39,6 @@ class  App extends Component {
     this.setState({
       latlong
     })
-    console.log('app -> setLatlong', this.state.latlong)
   }
   render(){
     return (
