@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const hotelsRouter = require('./routes/hotelsRouter')
 var cors = require('cors')
 const compression = require('compression')
+const swaggerUi = require('swagger-ui-express')
+const openApiDocumentation = require('./documentation/openApiDocumentation')
 require('dotenv').config()
 
 
@@ -17,12 +19,10 @@ app.use(compression())
 app.use(bodyParser.json({limit: '100mb'}))
 
 app.use('/api/v1/hotels', hotelsRouter)
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiDocumentation))
 
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  res.status(404).send({ 'error': 'Not found' })
 });
 
 
