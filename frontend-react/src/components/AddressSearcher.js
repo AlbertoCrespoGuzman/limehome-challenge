@@ -13,6 +13,7 @@ class AddressSearcher extends Component {
             address: ''
         }
         this.handleSelect = this.handleSelect.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
     componentDidMount(){
         
@@ -48,6 +49,7 @@ class AddressSearcher extends Component {
         this.setState({ address })
     }
     handleSelect = address => {
+        this.setState({ address })
         geocodeByAddress(address)
           .then(results => getLatLng(results[0]))
           .then(latLng => {
