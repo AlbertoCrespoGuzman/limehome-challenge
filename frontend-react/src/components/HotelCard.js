@@ -17,7 +17,7 @@ class HotelCard extends Component {
     render(){
         return (
             <div className='card' >
-                <img src={this.getRandomPicture()} style={{flex:1}} />
+                <img src={this.getRandomPicture()} style={{flex:1, width:'25%'}} alt="hotel"/>
                 <div className="cardContainer" >
                     <b style={{flex:1}}>{this.props.hotel.title}</b>
                     <div style={{fontSize:12, flex:1}}>Distance: {this.props.hotel.distance}m</div> 

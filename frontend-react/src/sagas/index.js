@@ -1,7 +1,7 @@
-import { takeLatest } from 'redux-saga/effects'
+import { takeEvery } from 'redux-saga/effects'
 import getHotels from './hotelsSagas'
 function *index(){
-    yield takeLatest('LOAD_DATA_REQUEST', getHotels)
+    yield takeEvery('LOAD_DATA_REQUEST', getHotels)
 }
 
 export default index
