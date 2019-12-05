@@ -22,7 +22,7 @@ module.exports =   {
           description: 'Local server'
         },
         {
-          url: 'https://api_url_testing',
+          url: 'http://3.19.97.220:8080/api/v1',
           description: 'Testing server'
         }
       ],
