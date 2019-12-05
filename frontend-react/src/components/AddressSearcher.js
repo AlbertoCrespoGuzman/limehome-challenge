@@ -61,7 +61,7 @@ class AddressSearcher extends Component {
     render(){
         return (
             <div className="container">
-                <h1 className="title">HOTELS</h1>
+                <h2 className="title">HOTELS</h2>
                 <PlacesAutocomplete
                   value={this.state.address}
                   onChange={this.handleChange}
