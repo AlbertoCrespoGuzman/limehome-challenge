@@ -5,6 +5,7 @@ import { put } from 'redux-saga/effects'
 dotenv.config()
 
 function *getHotels(actions){
+    console.log('sagas', process.env.REACT_APP_API_HOST + '?latlong=' + actions.latlong)
     const data = yield axios.get(process.env.REACT_APP_API_HOST + '?latlong=' + actions.latlong)
     yield put(loadDataSuccess(data.data))
 }
